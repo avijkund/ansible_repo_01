@@ -1,3 +1,48 @@
 ---
 - name: User management playbook
   hosts: web
+  vars:
+    usermgmt:
+      - username: bob
+        type: developer
+      - username: john
+        type: developer
+      - username: bill
+        type: analyst
+      - username: jane
+        type: analyst
+    groupmgmt:
+      - groupname: web-designer
+        gid: 20000
+      - groupname: system-analyst
+        gid: 30000
+  tasks:
+
+    - name: Creating users with valid groups
+      user:
+        name: "{{ item.username }}"
+        groups: web-designer
+        shell: /bin/bash
+        password: "{{ (lookup ('file', 'secret/secret.yml')) | password_hash ('sha512') }}"
+        state: present
+      when: item.type == 'developer'
+      loop: "{{ usermgmt }}"
+
+
+    - name: Creating users with valid groups
+      user:
+        name: "{{ item.username }}"
+        groups: system-analyst
+        shell: /bin/bash
+        password: "{{ (lookup ('file', 'secret/secret.yml')) | password_hash ('sha512') }}"
+        state: present
+      when: item.type == 'analyst'
+      loop: "{{ usermgmt }}"
+
+  pre_tasks:
+    - name: Creating groups
+      group:
+        name: "{{ item.groupname }}"
+        gid: "{{ item.gid }}"
+        state: present
+      loop: "{{ groupmgmt }}"
