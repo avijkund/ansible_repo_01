@@ -1,0 +1,51 @@
+----
+- name: Configure web server using ansible playbook
+  hosts: all
+  tasks:
+    - name: Installing httpd package
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Congigure custom httpd configuration
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen'
+        insertafter: '^#Listen'
+        line: Listen 8080
+
+    - name: Copying index file
+      copy:
+        dest: /var/www/html/index.html
+        content: " This is a test HTML File"
+
+    - name: Relabeling selinux port for apache
+      seport:
+        port: 8080
+        proto: tcp
+        setype: http_port_t
+        state: present
+
+    - name: Allow port from firewall
+      firewalld:
+        port: 8080/tcp
+        permanent: true
+        state: enabled
+
+    - name: Start and enable http service
+      service: 
+        name: httpd
+        state: started
+        enabled: true
+
+- name: Checking web configuration from localhost
+  hosts: localhost
+  become: false
+  tasks:
+    - name: using uri module to check the web status
+      uri:
+        url: http://client
+        return_content: true
+      register: result
+    - debug:
+        var: result.content

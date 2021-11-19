@@ -1,0 +1,11 @@
+---
+- name: Uninstall wireshark
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Uninstall wireshark
+      win_package:
+        path: 'C:\Program Files\Wireshark\uninstall.exe'
+        product_id: 'Wireshark'
+        arguments: /S
+        state: absent
