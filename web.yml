@@ -1,6 +1,6 @@
 ---
 - name: Configure web server using ansible playbook
-  hosts: localhost
+  hosts: db
   remote_user: avijit
   become: true
   become_user: root
