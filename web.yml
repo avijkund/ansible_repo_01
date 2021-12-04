@@ -1,4 +1,4 @@
-----
+---
 - name: Configure web server using ansible playbook
   hosts: db
   tasks:
