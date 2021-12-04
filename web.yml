@@ -1,6 +1,6 @@
 ---
 - name: Configure web server using ansible playbook
-  hosts: db
+  hosts: localhost
   become: true
   become_user: root
   tasks:
