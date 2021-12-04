@@ -1,6 +1,6 @@
 ----
 - name: Configure web server using ansible playbook
-  hosts: all
+  hosts: db
   tasks:
     - name: Installing httpd package
       yum:
