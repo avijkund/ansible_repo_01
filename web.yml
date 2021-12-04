@@ -1,6 +1,7 @@
 ---
 - name: Configure web server using ansible playbook
   hosts: localhost
+  remote_user: avijit
   become: true
   become_user: root
   tasks:
