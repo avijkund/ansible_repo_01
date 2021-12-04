@@ -12,7 +12,7 @@
         path: /etc/httpd/conf/httpd.conf
         regexp: '^Listen'
         insertafter: '^#Listen'
-        line: Listen 8080
+        line: Listen 8081
 
     - name: Copying index file
       copy:
@@ -21,14 +21,14 @@
 
     - name: Relabeling selinux port for apache
       seport:
-        port: 8080
+        port: 8081
         proto: tcp
         setype: http_port_t
         state: present
 
     - name: Allow port from firewall
       firewalld:
-        port: 8080/tcp
+        port: 8081/tcp
         permanent: true
         state: enabled
 
