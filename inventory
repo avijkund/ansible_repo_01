@@ -1,2 +1,2 @@
 [db]
-client
+client ansible_user=avijit
