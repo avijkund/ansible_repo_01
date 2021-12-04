@@ -1,12 +1,9 @@
 pipeline {
   agent { label 'linux' }
-  environment {
-   ANSIBLE_PRIVATE_KEY=credentials('id_rsa.pub') 
-  }
-  stages {
+   stages {
     stage('Hello') {
       steps {
-        sh 'ansible-playbook -i inventory --private-key=$ANSIBLE_PRIVATE_KEY web.yml'
+        sh 'ansible-playbook -i inventory  web.yml'
       }
     }
   }
