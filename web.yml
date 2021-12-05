@@ -47,7 +47,7 @@
   tasks:
     - name: using uri module to check the web status
       uri:
-        url: http://client
+        url: http://client:8081
         return_content: true
       register: result
     - debug:
