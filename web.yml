@@ -38,7 +38,7 @@
     - name: Start and enable http service
       service: 
         name: httpd
-        state: started
+        state: restarted
         enabled: true
 
 - name: Checking web configuration from localhost
