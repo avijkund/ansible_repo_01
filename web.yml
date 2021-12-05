@@ -24,7 +24,7 @@
 
     - name: Relabeling selinux port for apache
       seport:
-        port: 8081
+        ports: 8081
         proto: tcp
         setype: http_port_t
         state: present
