@@ -15,8 +15,9 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-runs-on: self-hosted
+
   build:
+    runs-on: self-hosted
     steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v3
@@ -27,6 +28,7 @@ runs-on: self-hosted
   test:
       # The type of runner that the job will run on
       runs-on: self-hosted
+      needs: [build]
       steps:
         - uses: actions/checkout@v3
         # Runs a set of commands using the runners shell
@@ -36,6 +38,7 @@ runs-on: self-hosted
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
+      needs: [test]
       steps:
         - uses: actions/checkout@v3
         # Runs a set of commands using the runners shell
