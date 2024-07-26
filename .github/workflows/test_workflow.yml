@@ -28,7 +28,7 @@ jobs:
           run: |
             #cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory test.yml -C
+            ansible-playbook -i inventory -u avijit test.yml -C
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
@@ -43,7 +43,7 @@ jobs:
           run: |
             #cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory test.yml -vvvv > /tmp/ansible.log
+            ansible-playbook -i inventory -u avijit test.yml -vvvv > /tmp/ansible.log
         - uses: actions/upload-artifact@v1
           with:
             name: my-artifact
