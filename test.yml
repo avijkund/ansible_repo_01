@@ -1,6 +1,6 @@
 ---
 - name: Test Playbook
-  hosts: localhost
+  hosts: all
   tasks:
   - name: Create a folder
     file:
