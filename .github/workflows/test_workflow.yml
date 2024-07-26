@@ -25,7 +25,7 @@ jobs:
         # Runs a single command using the runners shell
         - name: Run a one-line script
           run: echo Hello, world!
-  test:
+  Check:
       # The type of runner that the job will run on
       runs-on: self-hosted
       needs: [build]
@@ -34,18 +34,20 @@ jobs:
       steps:
         - name: Run the playbook
           run: |
+            cp ./inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i ./inventory test.yml -C
+            ansible-playbook  test.yml -C
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
-      needs: [build]
+      needs: [Check]
       container:
         image: 9831259430/ansiblerepo:v1 
       steps:
         # Runs a set of commands using the runners shell
         - name: Run the playbook
           run: |
+            cp ./inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook -i ./inventory test.yml -vvvv > /tmp/ansible.log
         - uses: actions/upload-artifact@v1
