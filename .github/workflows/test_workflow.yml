@@ -36,7 +36,7 @@ jobs:
           run: |
             cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook  test.yml -C
+            ansible-playbook -i inventory test.yml -C
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
