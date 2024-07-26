@@ -16,23 +16,23 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  Check:
-      # The type of runner that the job will run on
-      runs-on: self-hosted
-      container:
-        image: 9831259430/ansiblerepo:v2
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
-        - name: Run the playbook
-          run: |
-            #cp inventory /etc/ansible/hosts
-            export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory -u avijit test.yml -C
+  # Check:
+  #     # The type of runner that the job will run on
+  #     runs-on: self-hosted
+  #     container:
+  #       image: 9831259430/ansiblerepo:v2
+  #     steps:
+  #       - name: Checkout code
+  #         uses: actions/checkout@v3
+  #       - name: Run the playbook
+  #         run: |
+  #           #cp inventory /etc/ansible/hosts
+  #           export ANSIBLE_HOST_KEY_CHECKING=False
+  #           ansible-playbook -i inventory -u avijit test.yml -C
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
-      needs: [Check]
+      needs: []
       container:
         image: 9831259430/ansiblerepo:v2
       steps:
@@ -43,8 +43,8 @@ jobs:
           run: |
             #cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
-            ansible-playbook -i inventory -u avijit test.yml -vvvv > /tmp/ansible.log
+            ansible-playbook -i inventory -u avijit test.yml -vvvv > ansible.log
         - uses: actions/upload-artifact@v1
           with:
             name: my-artifact
-            path: /tmp/ansible.log
+            path: ansible.log
