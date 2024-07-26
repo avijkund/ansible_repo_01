@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: Linux
     container:
-      image: 9831259430/ansiblerepo:v1
+      image: 9831259430/ansiblerepo:v2
     steps:
      
         # Runs a single command using the runners shell
@@ -30,7 +30,7 @@ jobs:
       runs-on: self-hosted
       needs: [build]
       container:
-        image: 9831259430/ansiblerepo:v1
+        image: 9831259430/ansiblerepo:v2
       steps:
         - name: Run the playbook
           run: |
@@ -42,7 +42,7 @@ jobs:
       runs-on: self-hosted
       needs: [Check]
       container:
-        image: 9831259430/ansiblerepo:v1 
+        image: 9831259430/ansiblerepo:v2
       steps:
         # Runs a set of commands using the runners shell
         - name: Run the playbook
