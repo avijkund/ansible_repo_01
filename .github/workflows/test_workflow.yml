@@ -34,7 +34,7 @@ jobs:
       steps:
         - name: Run the playbook
           run: |
-            cp ./inventory /etc/ansible/hosts
+            cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook  test.yml -C
   deploy:
@@ -47,7 +47,7 @@ jobs:
         # Runs a set of commands using the runners shell
         - name: Run the playbook
           run: |
-            cp ./inventory /etc/ansible/hosts
+            cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook test.yml -vvvv > /tmp/ansible.log
         - uses: actions/upload-artifact@v1
