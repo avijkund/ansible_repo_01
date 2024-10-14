@@ -51,7 +51,4 @@ jobs:
             #cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook -i inventory -u avijit test.yml -vvvv > ansible.log
-        - uses: actions/upload-artifact@v1
-          with:
-            name: my-artifact
-            path: ansible.log
+
