@@ -34,6 +34,7 @@ jobs:
   deploy:
       # The type of runner that the job will run on
       runs-on: self-hosted
+      if: github.event.inputs.branch != null
       needs: []      
       container:
         image: 9831259430/ansiblerepo:v2
