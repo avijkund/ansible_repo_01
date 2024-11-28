@@ -48,4 +48,7 @@ jobs:
             #cp inventory /etc/ansible/hosts
             export ANSIBLE_HOST_KEY_CHECKING=False
             ansible-playbook -i inventory -u avijit test.yml -vvvv > ansible.log
+        - name: Test run
+          run: |
+             echo "Test Run"
 
