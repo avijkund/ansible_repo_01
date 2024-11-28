@@ -10,38 +10,9 @@ on:
     inputs:
       branch:
         description: branch/tag
-        required: true
-        type: string
-      commit:
-        description: commit
         required: false
         type: string
-      azureregion:
-        description: Azure Region
-        required: true
-        type: choice
-        options:
-        - eastcentral
-      custfullname:
-        description: Customer Full Name
-        required: true
-        type: string
-      customerkey:
-        description: Customer Key
-        required: true
-        type: string
-      email:
-        description: BI Administrator Emai Address
-        required: true
-        type: string
-      producttype:
-        description: Product Type(password Safe)
-        required: true
-        type: boolean
-      serialnumber:
-        description: Serial Number
-        required: true
-        type: string
+      
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
