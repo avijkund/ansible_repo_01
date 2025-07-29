@@ -1,7 +1,9 @@
 name: Trigger Remote Workflow
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+    - master
 
 jobs:
   trigger-workflow:
